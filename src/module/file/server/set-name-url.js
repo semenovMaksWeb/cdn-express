@@ -9,6 +9,3 @@ const setNameUrl = (path, file, extensions) => {
    }
 }
 module.exports = {setNameUrl}
-
-
- 

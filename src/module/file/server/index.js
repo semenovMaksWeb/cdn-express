@@ -1,7 +1,9 @@
 const { setFile } = require('./set-file');
-
+const { getFile } = require('./get-file');
 const setAll = async (params, file) =>{
     return await setFile(params, file);
 }   
-
-module.exports = { setAll };
+const getAll = async (params) =>{
+    return await getFile(params);
+}  
+module.exports = { setAll, getAll };
