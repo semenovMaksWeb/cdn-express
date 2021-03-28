@@ -14,7 +14,7 @@ app.use(function (req, res, next) {
 
 global.appRoot = path.resolve(__dirname);
 global.appApi = "http://localhost:8000";
-
+global.secret_key = "dji349dfJFw=-adk";
 
 log4js.configure({
     appenders: {
