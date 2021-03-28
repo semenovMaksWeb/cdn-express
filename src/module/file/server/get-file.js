@@ -1,15 +1,13 @@
-const e = require('express');
 const fs = require('fs');
-const logger = require(`log4js`).getLogger('file');
 const public = `${appRoot}/public`;
 
-const getFile = async (name) => {
+const getFile = (name) => {
     const file = `${public}/${name}`
-    if(await !fs.existsSync(file)){
-        return "Каталог не найден";
+    if(!fs.existsSync(file)){
+        return {error:"Каталог не найден"};
     }
     if(!fs.lstatSync(file).isDirectory()){
-        return "Каталог не найден";
+        return {error:"Каталог не найден"};
     }
     let index = 'public';
     if(name){

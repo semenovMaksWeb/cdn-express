@@ -19,15 +19,15 @@ global.appApi = "http://localhost:8000";
 log4js.configure({
     appenders: {
         http:{  type: "dateFile", filename: "log/http/http.log" }, 
-        file:{  type: "dateFile", filename: "log/file/file.log" }, 
-        directive:{ type: "dateFile", filename: "log/directive/cteate-directive.log"  }
+        file:{  type: "dateFile", filename: "log/file/file.log" },
+        catalog:{ type: "dateFile", filename: "log/directives/directives.log"  },
     },
     categories: {
         default: { appenders: ["http"], level: ['info']},
-        file: { appenders: ["file"], level: ['info'] }},
-        directive: { appenders: ["directive"], level: ['info'] }
+        file: { appenders: ["file"], level: ['info'] },
+        catalog: { appenders: ["catalog"], level: ['info'] },
     },
-);
+});
 app.use(log4js.connectLogger(log4js.getLogger()));
 
 
@@ -43,8 +43,9 @@ app.use(fileUpload({
 
 
 app.use('/cdn', express.static('./public/'));
-app.use('/api', require('./src/module/file/controller/index'))
 
+app.use('/api', require('./src/module/file/controller/index'))
+app.use('/api', require('./src/module/directive/controller/index'))
 
 app.get('*', function(req, res){
     res.status(404).send([
